@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-from flask import Flask,jsonify,request,render_template
-=======
 from flask import Flask,jsonify,render_template,request
->>>>>>> 7c70141d11511649efc29deb6bdfc9969bee1f6b
 import json
 import stackindex
   
@@ -20,6 +16,7 @@ def startpy():
 def getplot():
     input_col = request.form.get('label')
     plot = stackindex.plotdata(input_col)
+    return render_template("index.html", user_image = 'static/figure1.png')
 
 if __name__ == "__main__":
     app.run(debug=True,host="0.0.0.0",port=PORT)

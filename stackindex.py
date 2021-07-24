@@ -40,7 +40,7 @@ def plotdata(input_col):
 
             m.plot()
             plt.savefig('static/figure1.png')
-            return None
+    
     
     
 
