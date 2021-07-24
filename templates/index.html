@@ -1,338 +1,554 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<title>Page Title</title>
-<style>
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap");
+	<title>Page Title</title>
+	<style>
+		@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap");
 
-body {
-	position: relative;
-	display: block;
-	margin: 0;
-	padding: 0;
-}
+		body {
+			position: relative;
+			display: block;
+			margin: 0;
+			padding: 0;
+		}
 
-* {
-	font-family: "Open Sans", sans-serif;
-}
-.selector {
-	border: 1px solid #e2eded;
-	border-color: #eaf1f1 #e4eded #dbe7e7 #e4eded;
-}
+		* {
+			font-family: "Open Sans", sans-serif;
+		}
 
-#country-selector {
-	position: relative;
-	display: block;
-	width: 300px;
-	height: 42px;
-	overflow: visible;
-	font-size: 1.5em;
-}
+		.selector {
+			border: 1px solid #e2eded;
+			border-color: #eaf1f1 #e4eded #dbe7e7 #e4eded;
+		}
 
-#country-selector a:hover {
-	text-decoration: none !important;
-}
+		#country-selector {
+			position: relative;
+			display: block;
+			width: 300px;
+			height: 42px;
+			overflow: visible;
+			font-size: 1.5em;
+		}
 
-#country-selector * {
-	user-select: none;
-}
+		#country-selector a:hover {
+			text-decoration: none !important;
+		}
 
-#country-selector *:focus {
-	outline: none;
-}
+		#country-selector * {
+			user-select: none;
+		}
 
-#country-selector input {
-	color: #e2eded;
-}
+		#country-selector *:focus {
+			outline: none;
+		}
 
-#select-button {
-	position: relative;
-	height: auto;
-	padding: 1em 2em;
-	background-color: #3c3f45;
-	cursor: pointer;
-	color: #fff;
-	font-weight: 600;
-	transition: 0.3s all ease-in-out;
-}
+		#country-selector input {
+			color: #e2eded;
+		}
 
-.label {
-	display: none;
-}
+		#select-button {
+			position: relative;
+			height: auto;
+			padding: 1em 2em;
+			background-color: #3c3f45;
+			cursor: pointer;
+			color: #fff;
+			font-weight: 600;
+			transition: 0.3s all ease-in-out;
+		}
 
-#chevrons {
-	position: absolute;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	width: 20px;
-	padding: 9px 14px;
-}
-#chevrons svg {
-	width: 100%;
-	height: 100%;
-}
+		.label {
+			display: none;
+		}
 
-#options-view-button {
-	position: absolute;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	margin: 0;
-	opacity: 0;
-	cursor: pointer;
-	z-index: 3;
-}
+		#chevrons {
+			position: absolute;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			width: 20px;
+			padding: 9px 14px;
+		}
 
-#selected-value {
-	font-size: 1em;
-	line-height: 1;
-	margin-right: 26px;
-}
+		#chevrons svg {
+			width: 100%;
+			height: 100%;
+		}
 
-.option,
-.label {
-	color: #000;
-	font-size: 1em;
-	font-weight: 500;
-}
+		#options-view-button {
+			position: absolute;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			margin: 0;
+			opacity: 0;
+			cursor: pointer;
+			z-index: 3;
+		}
 
-#chevrons {
-	position: absolute;
-	top: 2px;
-	right: 0;
-	bottom: 0;
-	width: 20px;
-	padding: 12px 14px;
-}
+		#selected-value {
+			font-size: 1em;
+			line-height: 1;
+			margin-right: 26px;
+		}
 
-#chevrons svg {
-	width: 100%;
-	height: 100%;
-}
+		.option,
+		.label {
+			color: #000;
+			font-size: 1em;
+			font-weight: 500;
+		}
 
-#options-view-button:checked + #select-button #chevrons i {
-	color: #000;
-}
+		#chevrons {
+			position: absolute;
+			top: 2px;
+			right: 0;
+			bottom: 0;
+			width: 20px;
+			padding: 12px 14px;
+		}
 
-#options-view-button:checked + #select-button {
-	background: #000;
-}
+		#chevrons svg {
+			width: 100%;
+			height: 100%;
+		}
 
-.options {
-	position: absolute;
-	left: 0;
-	width: 250px;
-}
+		#options-view-button:checked+#select-button #chevrons i {
+			color: #000;
+		}
 
-#options {
-	position: absolute;
-	right: 0;
-	left: 0;
-	width: 298px;
-	margin: 0 auto;
-	background-color: #fff;
-	z-index: 1000;
-}
+		#options-view-button:checked+#select-button {
+			background: #000;
+		}
 
-#options::-webkit-scrollbar {
-	width: 10px;
-}
+		.options {
+			position: absolute;
+			left: 0;
+			width: 250px;
+		}
 
-#options::-webkit-scrollbar-track {
-	background: #d0d0ce;
-}
+		#options {
+			position: absolute;
+			right: 0;
+			left: 0;
+			width: 298px;
+			margin: 0 auto;
+			background-color: #fff;
+			z-index: 1000;
+		}
 
-#options::-webkit-scrollbar-thumb {
-	background: #555;
-}
+		#options::-webkit-scrollbar {
+			width: 10px;
+		}
 
-#options::-webkit-scrollbar-thumb:hover {
-	background: #000;
-}
+		#options::-webkit-scrollbar-track {
+			background: #d0d0ce;
+		}
 
-#options-view-button:checked ~ #options {
-	height: 12em;
-	overflow-y: scroll;
-}
+		#options::-webkit-scrollbar-thumb {
+			background: #555;
+		}
 
-.option {
-	position: relative;
-	line-height: 1;
-	z-index: 2;
-	transition: none;
-}
+		#options::-webkit-scrollbar-thumb:hover {
+			background: #000;
+		}
 
-#options-view-button:checked ~ #options .option i {
-	display: block;
-	padding: 12px 0;
-	background-color: #fff;
-}
+		#options-view-button:checked~#options {
+			height: 12em;
+			overflow-y: scroll;
+		}
 
-#options-view-button:checked ~ #options .label {
-	display: block;
-	padding: 1em 2em;
-}
+		.option {
+			position: relative;
+			line-height: 1;
+			z-index: 2;
+			transition: none;
+		}
 
-.label {
-	text-decoration: none;
-	font-weight: 600;
-}
+		#options-view-button:checked~#options .option i {
+			display: block;
+			padding: 12px 0;
+			background-color: #fff;
+		}
 
-a.label:visited {
-	color: #000;
-}
+		#options-view-button:checked~#options .label {
+			display: block;
+			padding: 1em 2em;
+		}
 
-.option {
-	background: #f3f3f3;
-}
+		.label {
+			text-decoration: none;
+			font-weight: 600;
+		}
 
-.option:hover {
-	color: #fff;
-	background: #3c3f45;
-}
+		a.label:visited {
+			color: #000;
+		}
 
-.option:hover a {
-	color: #fff;
-	transition: none;
-}
+		.option {
+			background: #f3f3f3;
+		}
 
-</style>
+		.option:hover {
+			color: #fff;
+			background: #3c3f45;
+		}
+
+		.option:hover a {
+			color: #fff;
+			transition: none;
+		}
+	</style>
 </head>
+
 <body>
-<form action="result" method="POST">
-<div id="country-selector">
-	<div id="select-box">
-		<input type="checkbox" id="options-view-button">
-		<div id="select-button" class="selector">
-			<div id="selected-value">
-				<span>Select Technology</span>
+	<form action="result" method="POST">
+		<div id="country-selector">
+			<div id="select-box">
+				<input type="checkbox" id="options-view-button">
+				<div id="select-button" class="selector">
+					<div id="selected-value">
+						<span>Select Technology</span>
+					</div>
+					<div id="chevrons"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+							fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+							<path fill-rule="evenodd"
+								d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+						</svg>
+					</div>
+				</div>
+				<div id="options">
+					<div class="option">
+						<a class="label" href="#">nltk</a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">spacy</a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">stanford-nlp</a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">python</a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">r</a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">numpy</a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">scipy</a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">matlab</a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">machine-learning</a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">pandas</a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">pytorch</a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">keras</a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">nlp</a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">apache-spark</a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">hadoop</a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">pyspark</a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">python-3.x</a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">tensorflow</a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">deep-learning</a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">neural-network</a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">lstm</a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">time-series</a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">pillow</a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">rasa</a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">opencv</a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">pipenv</a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">seaborn</a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">Poland</a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">Dask</a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">jupyter</a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">AllenNLP</a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">Theano</a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">plotly</a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">scikit-learn</a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">BeautifulSoup</a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">scrapy</a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">Gensim </a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">FastText </a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">Pydot </a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">Pybrain </a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">Pytil </a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">Pygame </a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">Colab </a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">Shogun </a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">KNIME </a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">Apache </a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">Gunicorn </a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">Pygtk </a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">Weka </a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">Conda </a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">Ray </a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">matlab </a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">accord.net </a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">regression </a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">classification </a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">correlation </a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">cluster-analysis </a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">H2o </a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">Mallet </a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">Numba </a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">Tableau </a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">Trifacta </a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">PyArrow </a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">Rasterio </a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">Orange3 </a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">PyMC3 </a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">Opennn </a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">Oryx </a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">Istio </a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">Venes </a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">Plotnine </a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">Gluon </a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">Plato </a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">Sympy </a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">Flair </a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">stanford-nlp </a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">pyqt </a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">Nolearn </a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">Lasagne </a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">OCR </a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">Apache-spark-mlib </a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">azure-virtual-machine </a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">microservices </a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">orc </a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">apache-flink </a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">hive </a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">avro </a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">parquet </a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">aws-glue </a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">apache-tez </a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">Gradio </a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">knime </a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">streamlit </a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">knative </a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">mlflow </a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">pycaret </a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">pytorch-lightning </a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">dvc </a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">aws-chalice </a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">aws-athena </a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">presto-db </a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">couch-db </a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">mongo-db </a>
+					</div>
+					<div class="option">
+						<a class="label" href="#">apache-flink </a>
+					</div>
+
+				</div>
+
 			</div>
-			<div id="chevrons"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
-					<path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
-				</svg></div>
 		</div>
-		<div id="options">
-			<div class="option">
-				<a class="label" href="#">nltk</a>
-			</div>
-			<div class="option">
-				<a class="label" href="#">spacy</a>
-			</div>
-			<div class="option">
-				<a class="label" href="#">stanford-nlp</a>
-			</div>
-			<div class="option">
-				<a class="label" href="#">python</a>
-			</div>
-			<div class="option">
-				<a class="label" href="#">r</a>
-			</div>
-			<div class="option">
-				<a class="label" href="#">Belgium</a>
-			</div>
-			<div class="option">
-				<a class="label" href="#">Bosnia</a>
-			</div>
-			<div class="option">
-				<a class="label" href="#">Bulgaria</a>
-			</div>
-			<div class="option">
-				<a class="label" href="#">Croatia</a>
-			</div>
-			<div class="option">
-				<a class="label" href="#">Cyprus</a>
-			</div>
-			<div class="option">
-				<a class="label" href="#">Czech Republic</a>
-			</div>
-			<div class="option">
-				<a class="label" href="#">Denmark</a>
-			</div>
-			<div class="option">
-				<a class="label" href="#">Estonia</a>
-			</div>
-			<div class="option">
-				<a class="label" href="#">Finland</a>
-			</div>
-			<div class="option">
-				<a class="label" href="#">France</a>
-			</div>
-			<div class="option">
-				<a class="label" href="#">Germany</a>
-			</div>
-			<div class="option">
-				<a class="label" href="#">Greece</a>
-			</div>
-			<div class="option">
-				<a class="label" href="#">Hungary</a>
-			</div>
-			<div class="option">
-				<a class="label" href="#">Iceland</a>
-			</div>
-			<div class="option">
-				<a class="label" href="#">Ireland</a>
-			</div>
-			<div class="option">
-				<a class="label" href="#">Kazakhstan</a>
-			</div>
-			<div class="option">
-				<a class="label" href="#">Kosovo</a>
-			</div>
-			<div class="option">
-				<a class="label" href="#">Lithuania</a>
-			</div>
-			<div class="option">
-				<a class="label" href="#">Malta</a>
-			</div>
-			<div class="option">
-				<a class="label" href="#">Montenegro (Cluster Serbia)</a>
-			</div>
-			<div class="option">
-				<a class="label" href="#">Netherlands</a>
-			</div>
-			<div class="option">
-				<a class="label" href="#">Norway</a>
-			</div>
-			<div class="option">
-				<a class="label" href="#">Poland</a>
-			</div>
-			<div class="option">
-				<a class="label" href="#">Portugal</a>
-			</div>
-			<div class="option">
-				<a class="label" href="#">Romania</a>
-			</div>
-			<div class="option">
-				<a class="label" href="#">Russian Federation</a>
-			</div>
-			<div class="option">
-				<a class="label" href="#">Serbia</a>
-			</div>
-			<div class="option">
-				<a class="label" href="#">Slovakia</a>
-			</div>
-			<div class="option">
-				<a class="label" href="#">Slovenia</a>
-			</div>
-			<div class="option">
-				<a class="label" href="#">Spain</a>
-			</div>
-			<div class="option">
-				<a class="label" href="#">Sweden</a>
-			</div>
-			<div class="option">
-				<a class="label" href="#">Switzerland </a>
-			</div>
-		</div>
+<<<<<<< HEAD
 		
 	</div>
 	
 </div>
 
 </form>
+=======
+	</form>
+>>>>>>> 7c70141d11511649efc29deb6bdfc9969bee1f6b
 </body>
+
 </html>

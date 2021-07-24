@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 from flask import Flask,jsonify,request,render_template
+=======
+from flask import Flask,jsonify,render_template,request
+>>>>>>> 7c70141d11511649efc29deb6bdfc9969bee1f6b
 import json
 import stackindex
   
