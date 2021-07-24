@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+<style>
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap");
+
+body {
+	position: relative;
+	display: block;
+	margin: 0;
+	padding: 0;
+}
+
+* {
+	font-family: "Open Sans", sans-serif;
+}
+.selector {
+	border: 1px solid #e2eded;
+	border-color: #eaf1f1 #e4eded #dbe7e7 #e4eded;
+}
+
+#country-selector {
+	position: relative;
+	display: block;
+	width: 300px;
+	height: 42px;
+	overflow: visible;
+	font-size: 1.5em;
+}
+
+#country-selector a:hover {
+	text-decoration: none !important;
+}
+
+#country-selector * {
+	user-select: none;
+}
+
+#country-selector *:focus {
+	outline: none;
+}
+
+#country-selector input {
+	color: #e2eded;
+}
+
+#select-button {
+	position: relative;
+	height: auto;
+	padding: 1em 2em;
+	background-color: #3c3f45;
+	cursor: pointer;
+	color: #fff;
+	font-weight: 600;
+	transition: 0.3s all ease-in-out;
+}
+
+.label {
+	display: none;
+}
+
+#chevrons {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	width: 20px;
+	padding: 9px 14px;
+}
+#chevrons svg {
+	width: 100%;
+	height: 100%;
+}
+
+#options-view-button {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	opacity: 0;
+	cursor: pointer;
+	z-index: 3;
+}
+
+#selected-value {
+	font-size: 1em;
+	line-height: 1;
+	margin-right: 26px;
+}
+
+.option,
+.label {
+	color: #000;
+	font-size: 1em;
+	font-weight: 500;
+}
+
+#chevrons {
+	position: absolute;
+	top: 2px;
+	right: 0;
+	bottom: 0;
+	width: 20px;
+	padding: 12px 14px;
+}
+
+#chevrons svg {
+	width: 100%;
+	height: 100%;
+}
+
+#options-view-button:checked + #select-button #chevrons i {
+	color: #000;
+}
+
+#options-view-button:checked + #select-button {
+	background: #000;
+}
+
+.options {
+	position: absolute;
+	left: 0;
+	width: 250px;
+}
+
+#options {
+	position: absolute;
+	right: 0;
+	left: 0;
+	width: 298px;
+	margin: 0 auto;
+	background-color: #fff;
+	z-index: 1000;
+}
+
+#options::-webkit-scrollbar {
+	width: 10px;
+}
+
+#options::-webkit-scrollbar-track {
+	background: #d0d0ce;
+}
+
+#options::-webkit-scrollbar-thumb {
+	background: #555;
+}
+
+#options::-webkit-scrollbar-thumb:hover {
+	background: #000;
+}
+
+#options-view-button:checked ~ #options {
+	height: 12em;
+	overflow-y: scroll;
+}
+
+.option {
+	position: relative;
+	line-height: 1;
+	z-index: 2;
+	transition: none;
+}
+
+#options-view-button:checked ~ #options .option i {
+	display: block;
+	padding: 12px 0;
+	background-color: #fff;
+}
+
+#options-view-button:checked ~ #options .label {
+	display: block;
+	padding: 1em 2em;
+}
+
+.label {
+	text-decoration: none;
+	font-weight: 600;
+}
+
+a.label:visited {
+	color: #000;
+}
+
+.option {
+	background: #f3f3f3;
+}
+
+.option:hover {
+	color: #fff;
+	background: #3c3f45;
+}
+
+.option:hover a {
+	color: #fff;
+	transition: none;
+}
+
+</style>
+</head>
+<body>
+<form action="result" method="POST">
+<div id="country-selector">
+	<div id="select-box">
+		<input type="checkbox" id="options-view-button">
+		<div id="select-button" class="selector">
+			<div id="selected-value">
+				<span>Select Technology</span>
+			</div>
+			<div id="chevrons"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+					<path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+				</svg></div>
+		</div>
+		<div id="options">
+			<div class="option">
+				<a class="label" href="#">nltk</a>
+			</div>
+			<div class="option">
+				<a class="label" href="#">spacy</a>
+			</div>
+			<div class="option">
+				<a class="label" href="#">stanford-nlp</a>
+			</div>
+			<div class="option">
+				<a class="label" href="#">python</a>
+			</div>
+			<div class="option">
+				<a class="label" href="#">r</a>
+			</div>
+			<div class="option">
+				<a class="label" href="#">Belgium</a>
+			</div>
+			<div class="option">
+				<a class="label" href="#">Bosnia</a>
+			</div>
+			<div class="option">
+				<a class="label" href="#">Bulgaria</a>
+			</div>
+			<div class="option">
+				<a class="label" href="#">Croatia</a>
+			</div>
+			<div class="option">
+				<a class="label" href="#">Cyprus</a>
+			</div>
+			<div class="option">
+				<a class="label" href="#">Czech Republic</a>
+			</div>
+			<div class="option">
+				<a class="label" href="#">Denmark</a>
+			</div>
+			<div class="option">
+				<a class="label" href="#">Estonia</a>
+			</div>
+			<div class="option">
+				<a class="label" href="#">Finland</a>
+			</div>
+			<div class="option">
+				<a class="label" href="#">France</a>
+			</div>
+			<div class="option">
+				<a class="label" href="#">Germany</a>
+			</div>
+			<div class="option">
+				<a class="label" href="#">Greece</a>
+			</div>
+			<div class="option">
+				<a class="label" href="#">Hungary</a>
+			</div>
+			<div class="option">
+				<a class="label" href="#">Iceland</a>
+			</div>
+			<div class="option">
+				<a class="label" href="#">Ireland</a>
+			</div>
+			<div class="option">
+				<a class="label" href="#">Kazakhstan</a>
+			</div>
+			<div class="option">
+				<a class="label" href="#">Kosovo</a>
+			</div>
+			<div class="option">
+				<a class="label" href="#">Lithuania</a>
+			</div>
+			<div class="option">
+				<a class="label" href="#">Malta</a>
+			</div>
+			<div class="option">
+				<a class="label" href="#">Montenegro (Cluster Serbia)</a>
+			</div>
+			<div class="option">
+				<a class="label" href="#">Netherlands</a>
+			</div>
+			<div class="option">
+				<a class="label" href="#">Norway</a>
+			</div>
+			<div class="option">
+				<a class="label" href="#">Poland</a>
+			</div>
+			<div class="option">
+				<a class="label" href="#">Portugal</a>
+			</div>
+			<div class="option">
+				<a class="label" href="#">Romania</a>
+			</div>
+			<div class="option">
+				<a class="label" href="#">Russian Federation</a>
+			</div>
+			<div class="option">
+				<a class="label" href="#">Serbia</a>
+			</div>
+			<div class="option">
+				<a class="label" href="#">Slovakia</a>
+			</div>
+			<div class="option">
+				<a class="label" href="#">Slovenia</a>
+			</div>
+			<div class="option">
+				<a class="label" href="#">Spain</a>
+			</div>
+			<div class="option">
+				<a class="label" href="#">Sweden</a>
+			</div>
+			<div class="option">
+				<a class="label" href="#">Switzerland </a>
+			</div>
+		</div>
+		<div class="option">
+			<a class="label" href="#">Turkey</a>
+		</div>
+	</div>
+	<div class="option">
+		<a class="label" href="#">United Kingdom</a>
+	</div>
+</div>
+<div class="option">
+	<a class="label" href="#">Ukraine</a>
+</div>
+</form>
+</body>
+</html>
